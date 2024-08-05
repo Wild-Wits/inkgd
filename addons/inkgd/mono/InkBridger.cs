@@ -277,11 +277,11 @@ public partial class InkBridger : Node
 
 	private GodotObject MakeGDListDefinition(Ink.Runtime.ListDefinition listDefinition)
 	{
-		var items = new Godot.Collections.Dictionary<GodotObject, int>();
+		var items = new Godot.Collections.Dictionary<string, int>();
 
 		foreach(KeyValuePair<Ink.Runtime.InkListItem, int> kv in listDefinition.items) {
 			var inkListItem = MakeGDInkListItem(kv.Key);
-			items.Add(inkListItem, kv.Value);
+			items.Add((string)inkListItem.Get("item_name"), kv.Value);
 		}
 
 		var definitionParams = new Variant[] { listDefinition.name, items };
